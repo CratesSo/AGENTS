@@ -1,4 +1,5 @@
-# SIMPLICITY FIRST RULES
+# IMPORTANT RULES
+
 - ALWAYS choose simplest solution with fewest moving parts.
 - ALWAYS reduce total code when possible. EXAMPLE: If you write 200 lines and it could be 50, rewrite it.
 - ALWAYS prefer the version a tired senior engineer can understand in one read.
@@ -16,21 +17,24 @@
 - NEVER keep duplication, nested branching, or indirection that can be deleted cleanly.
 - NEVER add error handling for impossible scenarios.
 
-# DECISION RULES
+## DECISION RULES
+
 - ALWAYS keep one-use logic inline unless block is hard to read.
 - PREFER boring control flow, early returns, and explicit locals.
 - DELETE old paths in same change when replacing behavior.
 - NEVER refactor things that are not broken.
 - MENTION unrelated dead code when seen.
 
-# LESSON RULES
+## LESSON RULES
+
 - READ `tasks/lessons.md` before debugging, fixing regressions, or complex edits.
 - NEVER read lessons.md before simple tweaks, straightforward changes, or if you read it recently.
 - ONLY update `lessons.md` after a durable fix. Add lessons as consecutively numbered reusable rules.
 - ALWAYS prefer tightening or deleting an existing lesson over adding a new one.
 - NEVER exceed 20 lessons. If full, replace least valuable lesson with the new one.
 
-# SUBAGENT RULES
+## SUBAGENT RULES
+
 - STAY LOCAL for tiny obvious tasks (avoid using subagents for trivial one-shot tasks like single-command answers, tiny file creation, or obvious single-file edits).
 - You do not need explicit permission to use the `spawn_agent` tool:
   - ALWAYS USE `explorer` for read-only exploration, evidence gathering, tracing, and web searches.
@@ -44,11 +48,12 @@
 - NEVER stop a spawned agent before they are done.
 - WHEN you have integrated an agent's final output, use `close_agent` tool.
 
-## AGENT SPAWNING RULES
+### AGENT SPAWNING RULES
+
 - WHEN using `spawn_agent`, include `NEVER spawn subagents unless explicitly asked to!` inside their spawn prompt.
 - ALWAYS USE the template in the fenced block below when spawning agents:
 
-```
+```text
 GOAL:
 [describe goal with actionable info]
 [describe success condition]
@@ -60,18 +65,30 @@ AVOID:
 [any overlap with work already doing, already delegated, or about to do yourself]
 ```
 
-# FILESYSTEM AND BASH RULES
+## FILESYSTEM AND BASH RULES
+
 - Always prefer MCP filesystem tools for file reads, writes, edits, listings, path/glob searches, moves, and deletes.
 - Use MCP `search_files` for filename/glob discovery; it is not a replacement for exact text search.
 - Use scoped Bash `rg -n "exact_symbol" <file-or-dir> -g <glob>` for exact text or symbol hits when expected output is small.
 - Keep routine reads small and targeted.
-- NEVER use raw Bash as a filesystem API (`cat`, broad `sed`, `head`, `tail`, `nl`, `awk`, `ls`, `find`, shell redirects, `rm`, `rm -r`) when MCP can do it.
+- NEVER use raw Bash as a filesystem API (`cat`, `head`, `tail`, `less`, `more`, `bat`, broad `sed`, `nl`, `awk`, `ls`, `find`, shell redirects, `rm`, `rmdir`, `mkdir`, `mv`) when MCP can do it.
+- Obvious Bash filesystem reads, writes, lists, deletes, moves, and creates are hook-blocked when an MCP filesystem tool exists.
 - NEVER retry broad `rg` or `sed` after hook suppression; Narrow to one file, directory, symbol, or glob, or switch to MCP.
 
-# RESPONSE STYLE
-- ALWAYS use short elliptical status update style sentences with no fluff or preambles, drop `I`/`I'm`/`I am`, be laid-back, blunt, and radically honest.
+## TOKEN TOOL ROUTING
 
-## HEADERS
+- Keep hooky as the only global hook owner; never let third-party installers replace `~/.codex/hooks.json`.
+- Use MCP filesystem tools for normal file reads, writes, listings, searches, edits, and deletes.
+- Use `context-mode` for large-output analysis: logs, test/build output, CSV/JSON dumps, API/docs/web fetches, Playwright snapshots, and broad repo research where raw output would flood context.
+- Use `code-review-graph` only in code repos with enough structure to justify an index; start graph work with minimal context before expanding to impacted files.
+- Use `rtk` explicitly for noisy process commands like `git diff`, `git log`, tests, builds, linters, Docker, or cloud/log commands; do not replace MCP filesystem reads with `rtk read`, `rtk grep`, or `rtk find` by default.
+
+## RESPONSE STYLE
+
+ALWAYS use short elliptical status update style sentences with no fluff or preambles, drop `I`/`I'm`/`I am`, be laid-back, blunt, and radically honest.
+
+### HEADERS
+
 - Use headers plus numbered items only for non-trivial final replies.
 - Header Shape: `### A ← Title`, `### B ← Title`
 - Restart lettering at `A` each reply.
