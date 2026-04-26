@@ -7,12 +7,12 @@ Published Codex global instructions and custom subagent definitions.
 - `AGENTS.md`: global Codex instructions.
 - `cleanup.toml`: cleanup-focused execution subagent.
 - `explorer.toml`: read-only exploration subagent.
+- `navigator.toml`: high-reasoning read-only exploration subagent.
 - `reviewer.toml`: high-reasoning review subagent.
 - `reviewer_mini.toml`: lightweight review subagent.
 - `worker.toml`: execution subagent for complex implementation.
 - `worker_mini.toml`: execution subagent for small implementation.
 
-`navigator.toml` is intentionally not published here.
 
 ## Versions
 
@@ -21,6 +21,7 @@ Published Codex global instructions and custom subagent definitions.
 | global-agents | `AGENTS.md` | v3.1.1 | `global-agents/v3.1.1` |
 | cleanup | `cleanup.toml` | v2.2.0 | `cleanup/v2.2.0` |
 | explorer | `explorer.toml` | v2.4.1 | `explorer/v2.4.1` |
+| navigator | `navigator.toml` | v1.1.0 | `navigator/v1.1.0` |
 | reviewer | `reviewer.toml` | v2.5.2 | `reviewer/v2.5.2` |
 | reviewer_mini | `reviewer_mini.toml` | v2.5.2 | `reviewer_mini/v2.5.2` |
 | worker | `worker.toml` | v2.1.1 | `worker/v2.1.1` |
