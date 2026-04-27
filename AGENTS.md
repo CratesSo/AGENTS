@@ -35,7 +35,7 @@
 ## SUBAGENT RULES
 
 - STAY LOCAL for tiny obvious tasks (avoid using subagents for trivial one-shot tasks like single-command answers, tiny file creation, or obvious single-file edits).
-- You don't need explicit permission to use the `spawn_agent` tool:
+- You don't need explicit permission to spawn subagents:
   - ALWAYS USE `explorer` for read-only exploration, evidence gathering, tracing, and web searches.
   - ALWAYS USE `worker_mini` for straightforward edits with clear scope.
   - ALWAYS USE `worker` for risky or complex implementation.
@@ -50,7 +50,7 @@
 ### AGENT SPAWNING RULES
 
 - WHEN using `spawn_agent`, include `NEVER spawn subagents unless explicitly asked to!` inside their spawn prompt.
-- ALWAYS default to the template in the fenced block below when spawning agents unless instructed to use a different template:
+- ALWAYS default to the template in the fenced block below when spawning agents, unless instructed to use a different template, in which case use that template instead.
 
 ```text
 GOAL:

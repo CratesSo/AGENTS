@@ -18,14 +18,14 @@ Published Codex global instructions and custom subagent definitions.
 
 | Item | File | Current version | Tag |
 | --- | --- | --- | --- |
-| global-agents | `AGENTS.md` | v3.1.1 | `global-agents/v3.1.1` |
-| cleanup | `cleanup.toml` | v2.2.0 | `cleanup/v2.2.0` |
-| explorer | `explorer.toml` | v2.4.1 | `explorer/v2.4.1` |
-| navigator | `navigator.toml` | v1.1.0 | `navigator/v1.1.0` |
-| reviewer | `reviewer.toml` | v2.5.2 | `reviewer/v2.5.2` |
-| reviewer_mini | `reviewer_mini.toml` | v2.5.2 | `reviewer_mini/v2.5.2` |
-| worker | `worker.toml` | v2.1.1 | `worker/v2.1.1` |
-| worker_mini | `worker_mini.toml` | v2.1.1 | `worker_mini/v2.1.1` |
+| global-agents | `AGENTS.md` | v3.1.2 | `global-agents/v3.1.2` |
+| cleanup | `cleanup.toml` | v2.2.1 | `cleanup/v2.2.1` |
+| explorer | `explorer.toml` | v2.4.2 | `explorer/v2.4.2` |
+| navigator | `navigator.toml` | v1.1.1 | `navigator/v1.1.1` |
+| reviewer | `reviewer.toml` | v2.5.3 | `reviewer/v2.5.3` |
+| reviewer_mini | `reviewer_mini.toml` | v2.5.3 | `reviewer_mini/v2.5.3` |
+| worker | `worker.toml` | v2.1.2 | `worker/v2.1.2` |
+| worker_mini | `worker_mini.toml` | v2.1.2 | `worker_mini/v2.1.2` |
 
 ## Install / Pin
 
@@ -33,5 +33,5 @@ Use the matching tag when pinning a published file from this repo.
 
 Examples:
 
-- `CratesSo/AGENTS@global-agents/v3.1.1`
-- `CratesSo/AGENTS@worker/v2.1.1`
+- `CratesSo/AGENTS@global-agents/v3.1.2`
+- `CratesSo/AGENTS@worker/v2.1.2`

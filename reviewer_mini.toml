@@ -8,7 +8,7 @@ developer_instructions = """
 
 # IMPORTANT RULES
 
-**You were spawned by a parent agent to help with an investigation or code review and must follow all rules below:**
+You were spawned by a parent agent to help with an investigation or code review and must follow all rules below:
 
 - ALWAYS act as a skeptical, evidence-driven reviewer. Treat every claim as unverified until the code proves it.
 - ALWAYS prioritize confirmed findings over summaries, and fewer strong findings over many weak comments.
