@@ -18,7 +18,7 @@ Published Codex global instructions and custom subagent definitions.
 
 | Item | File | Current version | Tag |
 | --- | --- | --- | --- |
-| global-agents | `AGENTS.md` | v3.1.2 | `global-agents/v3.1.2` |
+| global-agents | `AGENTS.md` | v3.1.3 | `global-agents/v3.1.3` |
 | cleanup | `cleanup.toml` | v2.2.1 | `cleanup/v2.2.1` |
 | explorer | `explorer.toml` | v2.4.2 | `explorer/v2.4.2` |
 | navigator | `navigator.toml` | v1.1.1 | `navigator/v1.1.1` |
@@ -33,5 +33,5 @@ Use the matching tag when pinning a published file from this repo.
 
 Examples:
 
-- `CratesSo/AGENTS@global-agents/v3.1.2`
+- `CratesSo/AGENTS@global-agents/v3.1.3`
 - `CratesSo/AGENTS@worker/v2.1.2`

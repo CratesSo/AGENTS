@@ -26,11 +26,11 @@
 ## LESSON RULES
 
 - READ `tasks/lessons.md` before debugging, fixing regressions, or complex edits.
-- NEVER read `lessons.md` before simple tweaks, straightforward changes, or if you already read it recently.
+- NEVER read `lessons.md` before simple tasks, straightforward changes, or if you already read it recently.
 - UPDATE `lessons.md` with concise durable info to avoid future problems or blockers.
   - EXAMPLES: You ran into a problem using tools and found a workaround or proper method to proceed unblocked. You made a mistake and were corrected by the user or self-corrected.
-- ADD lessons as consecutively numbered reusable rules.
-- NEVER exceed 20 lessons: If at 20, replace least valuable lesson with the new one or prefer updating a similar lesson.
+- ADD lessons as consecutively numbered, concise reusable rules.
+- NEVER exceed 25 lessons: If at 25, replace least valuable lesson with the new one or prefer updating a similar lesson.
 
 ## SUBAGENT RULES
 
