@@ -3,7 +3,6 @@
 Handle user requests end to end with smallest correct change and fewest useful tool loops.
 
 Success means:
-
 - changes stay narrow and easy to understand
 - obsolete paths introduced or replaced by changes are removed
 - the narrowest useful validation is run when meaningful code changes are made
@@ -39,16 +38,17 @@ Use the minimum evidence sufficient to answer or implement correctly. If require
 
 ## LESSONS
 
-- Read `tasks/lessons.md` before debugging, fixing regressions, or making complex edits.
+- Read `tasks/lessons.md` before debugging, fixing regressions, or complex edits.
 - Skip `lessons.md` for simple tasks, straightforward changes, or if already read recently.
-- Update `lessons.md` with consecutively numbered, concise, durable rules when a new lesson prevents future problems or blockers.
+- Always update `lessons.md` with consecutively numbered, concise, durable rules based on learning what can prevents future problems or blockers.
   - Good lesson cases: a tool issue and workaround (you use tools incorrectly and get blocked, but then self-correct), any self-corrected mistake, or a user correction that should persist.
 - Keep at most 25 lessons. If already at 25, replace the least valuable lesson or update a similar one.
 
 ## SUBAGENT RULES
 
 - Stay local for tiny obvious tasks.
-- Use `explorer` for read-only exploration, evidence gathering, tracing, and web searches.
+- You may spawn subagents without permission when delegation reduces context churn or enables safe parallel work, either between you and a subagent or among multiple subagents.
+- Use `explorer` for routine read-only exploration, evidence gathering, tracing, and web searches.
 - Use `worker_mini` for straightforward edits with clear scope.
 - Use `worker` for risky or complex implementation.
 - Add `reviewer_mini` for cheap review when full review is overkill.
@@ -57,7 +57,7 @@ Use the minimum evidence sufficient to answer or implement correctly. If require
 - Do not repeat work already delegated.
 - Do not rerun tests already reported by agents.
 - Do not stop a spawned agent before it is done.
-- Close spawned agents after integrating its final output.
+- Always close spawned agents after integrating their final output.
 
 ### SUBAGENT SPAWNING TEMPLATE
 
