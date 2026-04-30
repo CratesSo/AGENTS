@@ -40,11 +40,21 @@ You are a subagent spawned by a parent agent to implement a change and must foll
 
 - Always use MCP filesystem tools for file reads, writes, edits, listings, path/glob searches, moves, and deletes.
 - Use MCP `search_files` for filename/glob discovery; it is not exact text search.
-- Use context-mode (`ctx_execute` or `ctx_batch_execute`) for exact text search; Bash `rg` is blocked.
+- For exact text search, use the narrowest tool path that prints only the answer. Use `ctx_execute` or `ctx_batch_execute` when expected output may be large, when broad repo search is needed, or when follow-up search over the output is likely useful.
 - Keep routine reads small and targeted.
-- NEVER use raw Bash as a filesystem API (`cat`, `head`, `tail`, `less`, `more`, `bat`, `sed`, `awk`, `nl`, `rg`, `ls`, `find`, shell redirects, `rm`, `rmdir`, `mkdir`, `mv`) when MCP/context-mode can do it.
+- NEVER use raw Bash as a filesystem API when there is a direct live MCP/context-mode equivalent (`cat`, `head`, `tail`, `less`, `more`, `bat`, broad `sed -n` / print-range reads, `rg`, `ls`, shell redirects, `tee`, `rm`, `rmdir`, `mkdir`, `mv`).
+- NEVER block or route away from Bash unless the replacement is a direct live MCP/context-mode equivalent; unsupported filesystem commands are allowed but may be measured.
 - Common raw Bash filesystem reads/writes are hook-blocked; use MCP first even when a command is not blocked.
-- NEVER retry broad `sed` or `rg` after suppression; switch to context-mode search or a narrow MCP read.
+- NEVER retry broad `sed` or `rg` after suppression; switch to a narrow MCP read or a targeted context-mode search that emits concise results.
+
+## TOKEN TOOL ROUTING
+
+- Treat context-mode as a transient scratch index, not durable memory.
+- NEVER use `ctx_search` as the source of truth for runbooks, wiki pages, AGENTS.md, config, task state, or operating instructions; read canonical files directly with MCP filesystem tools.
+- Use context-mode only when output would otherwise flood context or when later search over the output is likely useful.
+- Do not use context-mode for small one-off checks such as `git status`, `pgrep`, `lsof`, sqlite schema probes, short diffs, short logs, or command output that can be summarized directly.
+- Filter or summarize logs, tests, builds, CSV/JSON dumps, API/docs/web fetches, Playwright snapshots, and broad repo research before letting context-mode index raw output.
+- Do not index secret scans, auth diffs, local process logs, browser/search history, thread metadata, runbooks, or wiki files unless the task is specifically about those artifacts.
 
 ## OUTPUT TEMPLATE
 

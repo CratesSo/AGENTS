@@ -18,14 +18,14 @@ Published Codex global instructions and custom subagent definitions.
 
 | Item | File | Current version | Tag |
 | --- | --- | --- | --- |
-| global-agents | `AGENTS.md` | v3.1.3 | `global-agents/v3.1.3` |
-| cleanup | `cleanup.toml` | v2.2.1 | `cleanup/v2.2.1` |
-| explorer | `explorer.toml` | v2.4.2 | `explorer/v2.4.2` |
-| navigator | `navigator.toml` | v1.1.1 | `navigator/v1.1.1` |
-| reviewer | `reviewer.toml` | v2.5.3 | `reviewer/v2.5.3` |
-| reviewer_mini | `reviewer_mini.toml` | v2.5.3 | `reviewer_mini/v2.5.3` |
-| worker | `worker.toml` | v2.1.2 | `worker/v2.1.2` |
-| worker_mini | `worker_mini.toml` | v2.1.2 | `worker_mini/v2.1.2` |
+| global-agents | `AGENTS.md` | v3.1.4 | `global-agents/v3.1.4` |
+| cleanup | `cleanup.toml` | v2.2.2 | `cleanup/v2.2.2` |
+| explorer | `explorer.toml` | v2.4.3 | `explorer/v2.4.3` |
+| navigator | `navigator.toml` | v1.1.2 | `navigator/v1.1.2` |
+| reviewer | `reviewer.toml` | v2.5.4 | `reviewer/v2.5.4` |
+| reviewer_mini | `reviewer_mini.toml` | v2.5.4 | `reviewer_mini/v2.5.4` |
+| worker | `worker.toml` | v2.1.3 | `worker/v2.1.3` |
+| worker_mini | `worker_mini.toml` | v2.1.3 | `worker_mini/v2.1.3` |
 
 ## Install / Pin
 
