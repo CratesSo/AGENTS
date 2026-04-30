@@ -34,13 +34,13 @@ This repo is the private source of truth for the global `AGENTS.md` file and the
 | Item | File | Current version | Tag |
 | --- | --- | --- | --- |
 | global-agents | `AGENTS.md` | v3.1.5 | `global-agents/v3.1.5` |
-| cleanup | `cleanup.toml` | v2.2.2 | `cleanup/v2.2.2` |
-| explorer | `explorer.toml` | v2.4.3 | `explorer/v2.4.3` |
-| navigator | `navigator.toml` | v1.1.2 | `navigator/v1.1.2` |
-| reviewer | `reviewer.toml` | v2.5.4 | `reviewer/v2.5.4` |
-| reviewer_mini | `reviewer_mini.toml` | v2.5.4 | `reviewer_mini/v2.5.4` |
-| worker | `worker.toml` | v2.1.3 | `worker/v2.1.3` |
-| worker_mini | `worker_mini.toml` | v2.1.3 | `worker_mini/v2.1.3` |
+| cleanup | `cleanup.toml` | v3.2.2 | `cleanup/v3.2.2` |
+| explorer | `explorer.toml` | v3.4.3 | `explorer/v3.4.3` |
+| navigator | `navigator.toml` | v2.1.2 | `navigator/v2.1.2` |
+| reviewer | `reviewer.toml` | v3.5.4 | `reviewer/v3.5.4` |
+| reviewer_mini | `reviewer_mini.toml` | v3.5.4 | `reviewer_mini/v3.5.4` |
+| worker | `worker.toml` | v3.1.3 | `worker/v3.1.3` |
+| worker_mini | `worker_mini.toml` | v3.1.3 | `worker_mini/v3.1.3` |
 
 ## Install / Pin
 
