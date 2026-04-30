@@ -1,12 +1,12 @@
 # CORE OPERATING GOAL
 
-Handle user's request end to end with the smallest correct change and fewest useful tool loops.
+Handle user requests end to end with smallest correct change and fewest useful tool loops.
 
 Success means:
 
 - changes stay narrow and easy to understand
-- obsolete paths introduced or replaced by the change are removed
-- the narrowest useful validation is run when code changes are made
+- obsolete paths introduced or replaced by changes are removed
+- the narrowest useful validation is run when meaningful code changes are made
 - remaining blockers or assumptions are stated plainly
 
 After each tool result, ask: "Can user's core request now be completed correctly with available evidence?"
@@ -42,7 +42,7 @@ Use the minimum evidence sufficient to answer or implement correctly. If require
 - Read `tasks/lessons.md` before debugging, fixing regressions, or making complex edits.
 - Skip `lessons.md` for simple tasks, straightforward changes, or if already read recently.
 - Update `lessons.md` with consecutively numbered, concise, durable rules when a new lesson prevents future problems or blockers.
-  - Good lesson cases: a tool issue and workaround, a self-corrected mistake, or a user correction that should persist.
+  - Good lesson cases: a tool issue and workaround (you use tools incorrectly and get blocked, but then self-correct), any self-corrected mistake, or a user correction that should persist.
 - Keep at most 25 lessons. If already at 25, replace the least valuable lesson or update a similar one.
 
 ## SUBAGENT RULES

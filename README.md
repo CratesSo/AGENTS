@@ -18,7 +18,7 @@ Published Codex global instructions and custom subagent definitions.
 
 | Item | File | Current version | Tag |
 | --- | --- | --- | --- |
-| global-agents | `AGENTS.md` | v3.1.4 | `global-agents/v3.1.4` |
+| global-agents | `AGENTS.md` | v3.1.5 | `global-agents/v3.1.5` |
 | cleanup | `cleanup.toml` | v2.2.2 | `cleanup/v2.2.2` |
 | explorer | `explorer.toml` | v2.4.3 | `explorer/v2.4.3` |
 | navigator | `navigator.toml` | v1.1.2 | `navigator/v1.1.2` |
