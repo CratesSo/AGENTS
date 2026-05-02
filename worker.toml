@@ -20,50 +20,20 @@ Success means:
 - the narrowest useful validation is run
 - blockers, skipped validation, assumptions, and residual risk are stated plainly
 
-After each result, ask: "Can I complete the requested change correctly now?"
-If yes, stop gathering context and implement. Don't minimize tool loops at the cost of correctness, validation, or preserving intended behavior.
-
-Use the minimum evidence sufficient to implement correctly. If required evidence is missing, ask for the smallest missing field or report the blocker.
-
 ## IMPLEMENTATION DEFAULTS
 
-- Touch only files required for the task, plus adjacent cleanup needed for a clean cut.
 - Do not use the `work` skill.
-- Do not add features beyond what was asked.
-- Use the minimum amount of code that solves the problem.
 - Treat named files or directories as hard scope boundaries.
-- Prefer one canonical path and hard cut over to it.
 - Avoid fallback branches, parallel paths, compatibility shims, speculative extensibility, and generic wrappers with no real contract.
-- Run the narrowest useful tests or checks to validate.
-- When rules conflict, prefer narrower scope, fewer lines, one canonical path, and preserving existing behavior.
 - Only create helpers, abstractions, config knobs, or option bags for single call sites when they clearly simplify call sites.
 - Only add wrappers, hooks, classes, types, interfaces, or enums when they materially improve correctness or readability and remove more complexity than they add.
 - Do not widen types, function signatures, or data models with extra flags, optional fields, or parameters just to make changes fit.
 - Avoid tiny renaming helpers, callback pyramids, nested ternaries, state choreography split across handlers, and generic abstractions with vague names.
-- Prefer boring code: one obvious control-flow path, early returns over nesting, and explicit locals when readability improves.
 - Keep one-use logic inline unless the block is hard to read. Extract one small helper near the call site and delete duplicates when logic repeats 2+ times.
 - Inline or delete helpers that only forward arguments, wrap one call, or only exist for removed behavior.
 - Prefer simpler state shape and direct flow over extra flags, optional bags, sentinel values, or indirection.
 - Isolate side effects in small orchestrators when that clarifies behavior.
-- Delete dead code, redundant branches, obsolete helpers, and compatibility leftovers.
-- Remove imports, variables, functions, and old paths that changes make unused.
 - Never add defensive code or overly defensive tests.
-- Never refactor unrelated code.
-
-## TOOL ROUTING
-
-- Use MCP filesystem tools for normal file reads, writes, edits, listings, path/glob searches, moves, and deletes.
-- Use MCP `search_files` for filename/glob discovery. It is not exact text search.
-- For exact text search, use the narrowest tool path that prints only the answer.
-- Use `ctx_execute` or `ctx_batch_execute` when broad repo search, large output, or follow-up search over output is likely useful.
-- Keep routine reads small and targeted.
-- Treat context-mode as a transient scratch index, not durable memory.
-- Read canonical files directly with MCP filesystem tools when they define instructions, config, task state, or runbooks.
-- Do not use context-mode for small one-off checks that can be summarized directly.
-- Filter or summarize logs, tests, builds, CSV/JSON dumps, docs fetches, snapshots, and broad repo research before indexing raw output.
-- Do not index secret scans, auth diffs, local process logs, browser/search history, thread metadata, runbooks, or wiki files unless the task is specifically about those artifacts.
-- Avoid raw Bash as a filesystem API when there is a direct MCP/context-mode equivalent.
-- If a raw filesystem command is blocked or suppressed, switch to MCP or a targeted context-mode command that emits concise results.
 
 ## OUTPUT TEMPLATE
 

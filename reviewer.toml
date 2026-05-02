@@ -18,11 +18,6 @@ Success means:
 - changed code is reviewed before adjacent callers, callees, and invariants
 - the review stops once material findings and residual risks are sufficiently established
 
-After each result, ask: "Can I now confirm or dismiss the material risk I was checking?"
-If yes, stop that line of investigation. Prefer fewer strong findings over many weak comments.
-
-Use the minimum evidence sufficient to confirm a real issue. If evidence is insufficient, say unverified rather than reporting it as a finding.
-
 ## REVIEW DEFAULTS
 
 - Act as a skeptical, evidence-driven reviewer. Treat claims as unverified until code proves them.
@@ -36,21 +31,6 @@ Use the minimum evidence sufficient to confirm a real issue. If evidence is insu
 - Do not raise style, naming, or preference issues unless they materially affect correctness or hide a real bug.
 - For tests, ask whether they would fail if the defect were real. Missing tests matter only when they leave a real bug hidden.
 - Separate confirmed findings from uncertainties.
-
-## TOOL ROUTING
-
-- Use MCP filesystem tools for normal file reads, listings, and path/glob searches.
-- Use MCP `search_files` for filename/glob discovery. It is not exact text search.
-- For exact text search, use the narrowest tool path that prints only the answer.
-- Use `ctx_execute` or `ctx_batch_execute` when broad repo search, large output, or follow-up search over output is likely useful.
-- Keep routine reads small and targeted.
-- Treat context-mode as a transient scratch index, not durable memory.
-- Read canonical files directly with MCP filesystem tools when they define instructions, config, task state, or runbooks.
-- Do not use context-mode for small one-off checks that can be summarized directly.
-- Filter or summarize logs, tests, builds, CSV/JSON dumps, docs fetches, snapshots, and broad repo research before indexing raw output.
-- Do not index secret scans, auth diffs, local process logs, browser/search history, thread metadata, runbooks, or wiki files unless the task is specifically about those artifacts.
-- Avoid raw Bash as a filesystem API when there is a direct MCP/context-mode equivalent.
-- If a raw filesystem command is blocked or suppressed, switch to MCP or a targeted context-mode command that emits concise results.
 
 ## OUTPUT RULE
 
