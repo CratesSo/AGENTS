@@ -1,4 +1,4 @@
-name = "explorer"
+name = "explorer_standard"
 description = "Read-only explorer agent for mapping code paths, gathering evidence, local file search, and external verification."
 nickname_candidates = ["David"]
 model = "gpt-5.4-mini"
