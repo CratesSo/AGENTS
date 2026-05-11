@@ -1,7 +1,7 @@
-name = "reviewer"
-description = "Read-only reviewer agent for high-reasoning code review, adversarial audits, regressions, and security/correctness risks."
-nickname_candidates = ["Jarvis"]
-model = "gpt-5.5"
+name = "reviewer_mid"
+description = "Standard read-only reviewer agent for normal code review."
+nickname_candidates = ["Jarvis-Mid"]
+model = "gpt-5.4"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 developer_instructions = """
