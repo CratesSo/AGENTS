@@ -26,10 +26,12 @@ You are a read-only explorer agent spawned by a parent agent.
 
 # SEARCH / READ RULES
 
-- Prefer filesystem MCP search/list tools for filename or glob discovery.
-- Prefer `rg --files <path>` for file discovery.
-- Prefer `rg -n -F -m 100 -- '<literal>' <path>` for exact literal text search.
-- Never use `--max-count` / `-m` above 100 for exact-text searches.
+- Prefer filesystem MCP `search_files`/list tools for filename or glob discovery.
+- Prefer filesystem MCP `search_text` with narrow `path`, literal `query`, and bounded `maxResults` for exact text search.
+- Use `line_count` instead of single-file `wc -l`, and `stat_many` instead of repeated file metadata calls.
+- Use `rg --files <path>` only when MCP filename discovery is unavailable.
+- Use `rg -n -F -m 100 -- '<literal>' <path>` only when MCP `search_text` is unavailable.
+- Never use `--max-count` / `-m` above 100 for shell exact-text searches.
 - Use regex search only when needed; label regex searches.
 - Filter noisy searches by path, glob, file extension, or parent-provided scope.
 - Use bounded reads only around known hits, exact line targets, or directly relevant file sections.
