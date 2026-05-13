@@ -37,11 +37,11 @@ This repo is the private source of truth for the global `AGENTS.md` file and the
 
 | Item | File | Current version | Tag |
 | --- | --- | --- | --- |
-| global-agents | `AGENTS.md` | v3.1.8 | `global-agents/v3.1.8` |
+| global-agents | `AGENTS.md` | v3.1.9 | `global-agents/v3.1.9` |
 | cleanup | `cleanup.toml` | v3.2.2 | `cleanup/v3.2.2` |
-| explorer_light | `explorer_light.toml` | v1.0.1 | `explorer_light/v1.0.1` |
-| explorer_standard | `explorer_standard.toml` | v1.0.1 | `explorer_standard/v1.0.1` |
-| explorer_deep | `explorer_deep.toml` | v1.0.1 | `explorer_deep/v1.0.1` |
+| explorer_light | `explorer_light.toml` | v1.0.2 | `explorer_light/v1.0.2` |
+| explorer_standard | `explorer_standard.toml` | v1.0.2 | `explorer_standard/v1.0.2` |
+| explorer_deep | `explorer_deep.toml` | v1.0.2 | `explorer_deep/v1.0.2` |
 | reviewer_lite | `reviewer_lite.toml` | v1.0.0 | `reviewer_lite/v1.0.0` |
 | reviewer_mid | `reviewer_mid.toml` | v1.0.0 | `reviewer_mid/v1.0.0` |
 | reviewer_heavy | `reviewer_heavy.toml` | v1.0.0 | `reviewer_heavy/v1.0.0` |
