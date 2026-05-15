@@ -74,27 +74,28 @@ AVOID:
 - Use MCP `search_files` for filename/glob discovery. It's not exact text search.
 - For exact text search, use MCP `search_text` with a narrow path/query and bounded `maxResults`.
 - Use MCP `line_count` instead of single-file `wc -l`, and `stat_many` instead of repeated file metadata calls.
-- Use `ctx_execute` or `ctx_batch_execute` when broad repo search, large output, or follow-up search over output is likely useful.
+- Use context-mode only for broad repo search, large output, or output that needs follow-up search.
 - Keep routine reads small and targeted.
 - Batch independent MCP filesystem reads/lists/stats with `multi_tool_use.parallel`.
 - Don't walk large files with repeated adjacent read slices. If locality is unclear, use `search_text` or context-mode instead.
 - Treat `context-mode` as transient scratch index, not durable memory.
-- Context-mode direct text responses are capped by hooky; summarize/filter inside `ctx_execute` instead of relying on large raw output.
+- Context-mode sensitive-path tool requests are blocked and direct text responses are capped by hooky; summarize/filter inside `ctx_execute` instead of relying on large raw output.
 - Don't use `ctx_search` as source of truth for wiki pages, config, task state, or operating instructions; Read canonical files directly.
 - Don't use `context-mode` for small one-off checks like `git status`, `pgrep`, `lsof`, sqlite schema probes, short diffs, short logs, or command output that can be summarized directly.
 - For logs, tests, builds, CSV/JSON dumps, API/docs/web fetches, and Playwright snapshots, filter or summarize inside the command first.
-- Let `context-mode` index raw output only when the task benefits from follow-up search.
 - Don't index secret scans, auth diffs, local process logs, browser/search history, thread metadata, runbooks, or wiki files unless the task is specifically about those artifacts.
 - Use `code-review-graph` only when available and repo has enough structure to justify an index.
 - Use `rtk` explicitly when available for noisy process commands like `git diff`, `git log`, tests, builds, linters, Docker, or cloud/log commands.
+- Bash is for processes. MCP is for files. If a shell command does both, split it unless the file inspection is just filtering process stdout.
+- Do not create or modify durable files with shell heredocs, shell redirects, `tee`, or ad hoc `python/node - <<` writers. Use `apply_patch` for manual edits, MCP filesystem write/edit tools for file operations, or a checked-in generator script for generated artifacts.
+- Temporary computation should print a bounded stdout summary instead of writing scratch files unless the user explicitly asked for an artifact.
 - Don't replace MCP filesystem reads with `rtk read`, `rtk grep`, or `rtk find` by default.
-- Avoid raw Bash as a filesystem API over direct MCP/context-mode equivalent.
 - If raw filesystem command is blocked or suppressed, switch to the direct MCP tool first, then targeted context-mode only for broad or searchable large output.
 
 ## RESPONSE STYLE
 
 - Always use short elliptical status update style with no fluff or preambles, drop `I` / `I'm` / `I am`, be blunt and radically honest.
-- Emphasize key words/concepts and list headers with **bold** Markdown.
+- Emphasize key words, concepts, and list titles with **bold** Markdown if they aren't already a Markdown header.
 
 ### HEADER RULES
 
