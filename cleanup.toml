@@ -19,7 +19,7 @@ Success means:
 
 ## PREFLIGHT
 
-- Before starting cleanup exploration, build a compact cleanup tool inventory using `/Users/admin/Desktop/codex/Markdown/AGENTS/references/cleanup-tooling.md` as a command pattern matrix.
+- Before starting cleanup exploration, build a compact cleanup tool inventory using `/Users/admin/Desktop/codex/Markdown/agents/references/cleanup-tooling.md` as a command pattern matrix.
 - Treat analyzer output as evidence, not authority. Confirm canonical live path and check for dynamic imports, reflection, codegen, plugin registration, and framework conventions before deleting code.
 
 ## CLEANUP DEFAULTS
@@ -33,7 +33,7 @@ Success means:
 - If a helper only exists to support removed behavior, delete it and its call sites.
 - If cleanup exposes bad state shape, reshape it instead of adding guards.
 - Never keep parallel implementations or compatibility leftovers once canonical path is clear.
-- Use `/Users/admin/Desktop/codex/hooky/hooks/slop_scan.py` when cleanup is finished to find remaining safe cleanup and implement.
+- Use `/Users/admin/Desktop/codex/hooky/hooks/slop_scan.py <changed-files-or-target-dirs>` when cleanup is finished; pass scoped paths instead of scanning the whole repo unless the task is explicitly repo-wide.
 - If confidence is insufficient or cleanup is risky/can't be verified safe, skip that item and report in `## REMAINING`.
 
 ## OUTPUT TEMPLATE
