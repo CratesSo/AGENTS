@@ -2,7 +2,7 @@
 
 Published Codex global instructions and custom subagent definitions.
 
-This repo is the private source of truth for the global `AGENTS.md` file and the custom subagents used by Codex. The parent `Markdown` directory is only a workspace; this `agents/` checkout is the publishing repo.
+This repo is the private source of truth for the global `AGENTS.md` file and the custom subagents used by Codex. The parent `Markdown` directory is only a workspace; this `AGENTS/` checkout is the publishing repo.
 
 ## Files
 

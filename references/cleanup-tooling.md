@@ -71,10 +71,10 @@ Use this as a repo-agnostic pattern matrix during cleanup analysis preflight. Pr
 
 ## Optional Slop Scan
 
-If `/Users/admin/Desktop/codex/hooky/hooks/slop_scan.py` exists, it can be used as an advisory repo or directory scan:
+If `/Users/admin/Desktop/codex/hooky/hooks/slop_scan.py` exists, it can be used as an advisory scoped scan:
 
 ```bash
-python3 /Users/admin/Desktop/codex/hooky/hooks/slop_scan.py
+python3 /Users/admin/Desktop/codex/hooky/hooks/slop_scan.py <changed-files-or-target-dirs>
 ```
 
-Run it from the repo root or smallest target directory. It is optional, local-machine-specific, and never a required dependency. Report missing support tools such as `semgrep`, `ast-grep`, `shellcheck`, and `shfmt` as coverage gaps.
+Run it from the repo root and pass the smallest useful files or directories. Use no path arguments only for explicitly repo-wide cleanup. It is optional, local-machine-specific, and never a required dependency. Report missing support tools such as `semgrep`, `ast-grep`, `shellcheck`, and `shfmt` as coverage gaps.

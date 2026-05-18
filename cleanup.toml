@@ -19,7 +19,7 @@ Success means:
 
 ## PREFLIGHT
 
-- Before starting cleanup exploration, build a compact cleanup tool inventory using `/Users/admin/Desktop/codex/Markdown/agents/references/cleanup-tooling.md` as a command pattern matrix.
+- Before starting cleanup exploration, build a compact cleanup tool inventory using `/Users/admin/Desktop/codex/Markdown/AGENTS/references/cleanup-tooling.md` as a command pattern matrix.
 - Treat analyzer output as evidence, not authority. Confirm canonical live path and check for dynamic imports, reflection, codegen, plugin registration, and framework conventions before deleting code.
 
 ## CLEANUP DEFAULTS
