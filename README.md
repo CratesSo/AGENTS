@@ -13,7 +13,6 @@ This repo is the private source of truth for the global `AGENTS.md` file and the
 | `explorer_light.toml` | Cheap read-only locator and evidence gatherer for exact text search, filename discovery, small scoped lookups, and path:line refs. |
 | `explorer_standard.toml` | Default read-only repo explorer for mapping relevant files, symbols, local code paths, and evidence across a small scoped area. |
 | `explorer_deep.toml` | Escalated read-only mapper for multi-module paths or deeper local evidence maps. |
-| `reviewer_lite.toml` | Fast read-only reviewer for cheap code review and regression checks. |
 | `reviewer_mid.toml` | Standard read-only reviewer for normal code review. |
 | `reviewer_heavy.toml` | Deep read-only reviewer for high-reasoning code review, adversarial audits, regressions, and security/correctness risks. |
 | `worker.toml` | Execution-focused worker for complex targeted implementation or fixes. |
@@ -27,7 +26,6 @@ This repo is the private source of truth for the global `AGENTS.md` file and the
 | `explorer_light` | `gpt-5.3-codex-spark` | `medium` | `read-only` | The task needs exact text search, filename discovery, small scoped lookups, or a few path:line refs. |
 | `explorer_standard` | `gpt-5.4-mini` | `low` | `read-only` | The task needs default read-only repo exploration across a small scoped area. |
 | `explorer_deep` | `gpt-5.4-mini` | `high` | `read-only` | Standard exploration is insufficient, the code path spans multiple modules, or deeper local evidence is needed. |
-| `reviewer_lite` | `gpt-5.3-codex` | `high` | `read-only` | A fast, cheap code review or regression check is enough. |
 | `reviewer_mid` | `gpt-5.4` | `high` | `read-only` | A normal code review needs a standard read-only reviewer. |
 | `reviewer_heavy` | `gpt-5.5` | `high` | `read-only` | The change has serious correctness, security, regression, adversarial audit, or invariant risk. |
 | `worker` | `gpt-5.5` | `medium` | `workspace-write` | The implementation is complex, risky, or benefits from a stronger execution agent. |
@@ -37,16 +35,15 @@ This repo is the private source of truth for the global `AGENTS.md` file and the
 
 | Item | File | Current version | Tag |
 | --- | --- | --- | --- |
-| global-agents | `AGENTS.md` | v3.1.11 | `global-agents/v3.1.11` |
-| cleanup | `cleanup.toml` | v3.2.4 | `cleanup/v3.2.4` |
-| explorer_light | `explorer_light.toml` | v1.0.3 | `explorer_light/v1.0.3` |
-| explorer_standard | `explorer_standard.toml` | v1.0.3 | `explorer_standard/v1.0.3` |
-| explorer_deep | `explorer_deep.toml` | v1.0.3 | `explorer_deep/v1.0.3` |
-| reviewer_lite | `reviewer_lite.toml` | v1.0.0 | `reviewer_lite/v1.0.0` |
-| reviewer_mid | `reviewer_mid.toml` | v1.0.0 | `reviewer_mid/v1.0.0` |
-| reviewer_heavy | `reviewer_heavy.toml` | v1.0.0 | `reviewer_heavy/v1.0.0` |
-| worker | `worker.toml` | v3.1.3 | `worker/v3.1.3` |
-| worker_mini | `worker_mini.toml` | v3.1.3 | `worker_mini/v3.1.3` |
+| global-agents | `AGENTS.md` | v3.1.12 | `global-agents/v3.1.12` |
+| cleanup | `cleanup.toml` | v3.2.5 | `cleanup/v3.2.5` |
+| explorer_light | `explorer_light.toml` | v1.0.4 | `explorer_light/v1.0.4` |
+| explorer_standard | `explorer_standard.toml` | v1.0.4 | `explorer_standard/v1.0.4` |
+| explorer_deep | `explorer_deep.toml` | v1.0.4 | `explorer_deep/v1.0.4` |
+| reviewer_mid | `reviewer_mid.toml` | v1.0.1 | `reviewer_mid/v1.0.1` |
+| reviewer_heavy | `reviewer_heavy.toml` | v1.0.1 | `reviewer_heavy/v1.0.1` |
+| worker | `worker.toml` | v3.1.4 | `worker/v3.1.4` |
+| worker_mini | `worker_mini.toml` | v3.1.4 | `worker_mini/v3.1.4` |
 
 ## Install / Pin
 

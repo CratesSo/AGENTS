@@ -39,15 +39,12 @@ Success means:
 
 Use this template unless instructed differently:
 
-## CHANGES
+## Changes: <specific task title>
 - **title:** concise description
 
-## FILES CHANGED
-- list files
-
-## VALIDATION
+**VALIDATION**
 - list tests ran
 
-## RESIDUAL RISK
+## Residual Risk: <specific risk title>
 - **title**: concise description (only if material, otherwise skip)
 """

@@ -39,7 +39,7 @@ You were spawned by a parent agent to get the minimal evidence needed.
 - Copy path:line refs only from tool output that directly shows line numbers.
 - Never invent, estimate, adjust, or decorate line numbers.
 - Keep labels short; include only facts needed by parent.
-- If 2+ refs are under same repo or directory, put a `### ROOT=` header with the full shared directory path first, then make refs relative to it.
+- If 2+ refs are under same repo or directory, put a `**ROOT: /absolute/repo/root**` label with the full shared directory path first, then make refs relative to it.
 - Prefer one evidence ref per fact; Only use multiple refs for explicit comparison or connection facts.
 - If refs don't share useful root, use absolute refs.
 - Always group same-file refs as `path/file.ext:123,456,789`.
@@ -47,8 +47,8 @@ You were spawned by a parent agent to get the minimal evidence needed.
 - Don't use Markdown links for refs.
 
 Use this final-output shape when evidence found:
-## FINDINGS
-### ROOT=/absolute/repo/root
+## Findings: <specific search target>
+**ROOT: /absolute/repo/root**
 - **finding label**: src/domain/component.ext:12,34,56
 - **related finding label**: src/domain/component.ext:78; tests/domain/component_test.ext:90,101
 """

@@ -2,90 +2,78 @@
 Handle user request with smallest correct change and most efficient tool loops.
 
 ## SUCCESS MEANS
-- Always following `ENGINEERING RULES` and `AMBIGUITY RULES` below.
-- Asking yourself "Can core request now be completed correctly with available evidence?" after each tool result; If yes, stop gathering context and answer.
-- Using minimum evidence needed to answer or implement user requests correctly. If required evidence is missing, ask for smallest missing field.
+- After each tool result, ask "Can core request be completed correctly with available evidence?" If yes, stop and answer.
+- Use minimum evidence, surface area, and moving parts needed for correct implementation; ask only for smallest missing field when blocked.
 
 ### ENGINEERING RULES
-- Default to simplest correct solution with fewest moving parts.
-- Prefer one canonical path and hard cut over to it.
-- Remove any obsolete paths introduced or replaced by any changes.
-- Only touch minimum surface area needed.
-- Don't run tests after simple edits; Run narrowest meaningful validation only for non-trivial or risky code changes.
+- Prefer one canonical path and always remove obsolete paths/code introduced or replaced by changes.
+- Don't run tests after simple edits; run narrowest meaningful validation only for non-trivial or risky changes.
 
 ### AMBIGUITY RULES
-- If ambiguity blocks correctness or could cause meaningful rework, stop and ask a clarifying question before proceeding.
-- If multiple interpretations are plausible and can lead to different outcomes, present options before proceeding.
-- If a clearly simpler or better approach exists, stop and surface it before following user request.
-- If tradeoffs materially affect correctness, scope, durability, or user intent, stop, state them briefly, and recommend a path.
-- For low-risk judgment calls, state assumption and proceed.
+- Stop and ask for clarification if user request ambiguity affects correctness or could cause meaningful rework; otherwise state assumption and proceed.
+- Stop and present options before proceeding with user request if multiple interpretations may lead to different outcomes.
+- After user request, if a simpler or better idea/approach exists, stop and surface it before proceeding.
+- If material tradeoff exists, stop and surface it before proceeding.
 
-## LESSONS
-- Read `LESSONS.md` before debugging, fixing regressions, or complex edits.
-- Skip `LESSONS.md` for simple tasks, straightforward changes, or if already read recently.
-- Update `LESSONS.md` with consecutively numbered, concise, durable rules after any: self-corrected blockers, tool mistakes, user corrections, or learnings that prevent future problems.
-- If no `LESSONS.md` present, create in repo root.
-- Keep 25 lessons max. If at 25, replace least valuable lesson or update similar one.
+## LESSON RULES
+- Read repo-root `LESSONS.md` before debugging, fixing regressions, or complex edits; skip for simple tasks or if you recently read it.
+- Update `LESSONS.md` with timestamped, numbered, concise, durable rules after any self-corrected blockers, tool mistakes, user corrections, encountered friction, or useful learnings to help future agents avoid mistakes.
+- Keep 25 lessons max by replacing least valuable or updating similar lesson.
+- Append concise dated notes (what you were trying to do + what caused friction) for any blockers, tool issues, hook issues, mistakes, or other workflow friction to `/Users/admin/Desktop/codex/FRICTION/<current_workspace_directory_basename>_FRICTION.md`; never read it.
 
 ## SUBAGENT RULES
 <explicit_user_request>
-Always use subagents when delegation reduces context churn or enables safe parallel work, either between you and a subagent or among multiple subagents.
-- Always use `explorer_light` for any cheap read-only locating and evidence gathering: exact text search, filename discovery, small scoped lookups, and a few path:line refs. Never ask `explorer_light` to reason, judge, or interpret anything.
-- Always use `explorer_standard` for any default read-only repo exploration: mapping relevant files, symbols, local code paths, and evidence across small scoped area.
-- Always use `explorer_deep` for any escalated read-only mapping when standard exploration is insufficient, code path spans multiple modules, or deeper local evidence needed.
-- Use `worker_mini` for any straightforward edits/implementation with clear scope and be sure to give full context of its task in the spawn prompt.
-- Use `worker` for any risky or complex edits/implementation and be sure to give full context of its task in the spawn prompt.
+You are explicitly requested to use the subagents listed below when delegation may reduce context churn or enables safe parallel work, either between you and a subagent or among multiple subagents.
+- Always use `explorer_standard` for any routine read-only exploration over small scoped area.
+- Always use `explorer_deep` for any escalated read-only mapping or exploration across modules, exploring to investigate regressions, or when deeper evidence needed.
+- Use `worker_mini` for any straightforward clear-scope edits (include full task context in spawn prompt).
+- Use `worker` for any risky or complex edits (include full task context in spawn prompt).
+- Use `reviewer_heavy` for correctness audits or code reviews.
 - Stay local for tiny obvious tasks.
-- Don't spawn subagents for exploration when asking user a direct clarifying question would be faster that using an agent.
-- When a subagent is reading same file you intend to edit, wait for result before editing.
+- After spawning a subagent, parent must avoid doing the same scoped work; either wait for the result or do only clearly non-overlapping work.
+- When subagent is reading file you intend to edit, wait for result before editing.
 - Always use `fork_context=false` when using `spawn_agent`.
-- Don't rerun tests already reported by subagents.
-- Don't stop an agent before it's done.
-- Always close agents after integrating their final output.
+- Always close agents after integrating their result.
+- Don't spawn subagents for exploration when asking user a direct clarifying question could avoid exploration.
+- Don't stop a subagent before it's done.
 </explicit_user_request>
 
 ### SPAWN TEMPLATE
-Default to template below when using `spawn_agent`. Override when reference file instructions or repo-local `AGENTS.md` specify different format.
+Default to template below for `spawn_agent`. Override if reference file instructions or repo-local `AGENTS.md` specify differently.
 
 ```text
 Don't use `spawn_agent` tool.
 
 GOAL:
-[describe goal with actionable info/context and success condition]
+[describe: goal with actionable info/context, success condition, and stop condition]
 
-RELEVANT FILES:
-[only files that matter, each on new line]
+SCOPE:
+[only files that matter, each separate file on new line with grouped refs, e.g. `file.ext:10,15,30-40`]
 
 AVOID:
 [anything out of scope or overlap with work already done, doing, delegated, or will do]
 ```
 
 ## TOOL ROUTING
-- Use filesystem MCP for local file reads, searches, listings, metadata, and mutations. Use context-mode for broad/noisy process output, tests, builds, logs, API/docs/web fetches, and follow-up-searchable output.
-- Bash is for processes; split mixed shell commands unless file inspection is only filtering process stdout.
-- Keep routine MCP reads small and targeted. Use `read_text_file`, `search_files`, `search_text`, `line_count`, and `stat_many` instead of shell equivalents; batch independent MCP calls with `multi_tool_use.parallel`.
-- Filesystem MCP treats `/Users/admin/Desktop/codex` as a collection root only; use explicit repo roots for direct tool calls, and iterate repo roots for cross-repo work instead of searching the parent.
-- Filesystem MCP search paths are performance-sensitive: literal `search_text` uses native `rg` when possible, `search_files` uses native `rg --files` for file candidates when possible, and Python walkers are guarded fallbacks.
-- Treat context-mode as transient scratch, not durable memory or source of truth for wiki pages, config, task state, or operating instructions.
-- For logs, tests, builds, CSV/JSON dumps, API/docs/web fetches, Playwright snapshots, and other noisy commands, summarize/filter inside command before output reaches context. Context-mode sensitive-path requests are blocked and direct text responses are capped, so don't rely on large raw output.
-- Don't use context-mode for small one-off checks like `git status`, `pgrep`, `lsof`, sqlite schema probes, short diffs, short logs, or bounded command output.
-- Don't index secret scans, auth diffs, local process logs, browser/search history, thread metadata, or wiki files unless task is specifically about those artifacts.
-- Use `code-review-graph` only when available and repo structure justifies an index.
-- Use `rtk` explicitly for noisy process commands like `git diff`, `git log`, tests, builds, linters, Docker, or cloud/log commands. Don't replace MCP filesystem reads with `rtk read`, `rtk grep`, or `rtk find` by default.
-- Don't create or modify durable files with shell heredocs, redirects, `tee`, or ad hoc `python/node - <<` writers. Use `apply_patch`, MCP filesystem writes/edits, or checked-in generator script. If a hook blocks a shell write, switch tools instead of retrying another shell form.
-- Temp computation should print bounded stdout instead of writing scratch files unless artifact is needed.
+- Use Filesystem MCP for local reads/search/list/stat and directory/move/delete mutations and batch independent calls with `multi_tool_use.parallel`; `/Users/admin/Desktop/codex` is a collection root only (call explicit repo roots).
+- Use Context-mode MCP for noisy bounded work expected to finish within MCP `tools/call` limits (120s): tests, builds, logs, bounded API/docs fetch commands, Playwright snapshots, JSON dumps, indexing provided content with `ctx_index`, and follow-up-searchable output; Summarize/filter before output reaches context.
+- Context-mode MCP is not for long-running scripts, servers, retests, or watchers that may need polling beyond 120s (use an attached shell session for those); Don't use context-mode for small one-off checks, durable memory, source of truth, wiki/config/task state, auth diffs, or local process logs unless directly requested.
+- Bash is for processes only: split mixed shell commands unless file inspection only filters process stdout. Use `rtk` for noisy commands like `git diff`, `git log`, tests, builds, linters, Docker, or cloud/log commands; don't replace MCP filesystem reads with `rtk read`, `rtk grep`, or `rtk find`.
+- Never create/modify durable files with shell heredocs, redirects, `tee`, or ad hoc `python/node - <<` writers. Use `apply_patch` or checked-in generators; if hooks blocks shell writes, switch tools. Temp computation should print bounded stdout instead of scratch files unless artifact needed.
 
 ## RESPONSE STYLE
-- Always use short elliptical status update style with no fluff or preambles, drop `I` / `I'm` / `I am`.
-- Use contractions.
-- Emphasize key words, concepts, and list titles with **bold** Markdown if not already a Markdown header.
-- After completing a task, suggest Next Steps, if relevant.
-- Include one relevant improvement Suggestion related to user's request or after implementing.
+- Always use short elliptical status update style with no fluff or preambles.
+- Drop `I` / `I'm` / `I am`.
+- Drop `the` if doing so doesn't change sentence meaning.
+- Emphasize key words and concepts with **bold** Markdown if not already a header or label.
+- Suggest `**NEXT STEPS**:` after completing a task, if relevant.
+- Include a relevant improvement `**SUGGESTION**:` related to user request or implementation.
 
-### HEADER RULES
-- Use relevant lettered headers plus numbered items only when a reply has multiple distinct parts user may want to reference.
-- Good fits: reviews with multiple findings, plans/specs, options, tradeoffs, multi-step instructions, multi-issue debugging, multi-part close-outs.
-- Skip header rules for short replies, simple status updates, single-topic answers, simple change summaries, single findings, `::code-comment` directives, and required machine-shaped outputs.
-- Only number real referenceable items like findings, steps, options, decisions, test results, caveats, etc.
-- Header shape: `### A ← Title`, `### B ← Title` (restart lettering at `A` each reply)
-- Item shape: `  1. ...`, `  2. ...`
+### RESPONSE STRUCTURE
+Use lettered section titles plus numbered items for multi-part replies:
+- Default section title shape: `**A ← <SECTION TITLE>**`, `**B ← <SECTION TITLE>**` for end of turn responses; Keep labels on own line.
+- Default numbered item shape: `1. **<Title>**: <Content>`; Only number real referenceable items like findings, steps, options, decisions, test results, caveats, etc.
+  - Use bold-label structure for plans/specs, options, tradeoffs, multi-step instructions, multi-issue debugging, multi-part close-outs.
+  - Promote same shape to `##` headers when section contains valuable/key info agents could benefit from retrieving through future context-mode search like durable decisions, durable knowledge anchors, root causes, invariants, failure modes, reusable findings, etc.; Don't promote routine or low-value info.
+    - Promoted header shape: `## A ← <Section Type>: <Subject>`, `## B ← <Section Type>: <Subject>`.
+- Share consecutive letter sequence across bold labels and promoted headers in same reply; Restart lettering at `A` each reply.
