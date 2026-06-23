@@ -35,13 +35,13 @@ This repo is the private source of truth for the global `AGENTS.md` file and the
 
 | Item | File | Current version | Tag |
 | --- | --- | --- | --- |
-| global-agents | `AGENTS.md` | v3.1.12 | `global-agents/v3.1.12` |
-| cleanup | `cleanup.toml` | v3.2.5 | `cleanup/v3.2.5` |
-| explorer_light | `explorer_light.toml` | v1.0.4 | `explorer_light/v1.0.4` |
-| explorer_standard | `explorer_standard.toml` | v1.0.4 | `explorer_standard/v1.0.4` |
-| explorer_deep | `explorer_deep.toml` | v1.0.4 | `explorer_deep/v1.0.4` |
-| reviewer_mid | `reviewer_mid.toml` | v1.0.1 | `reviewer_mid/v1.0.1` |
-| reviewer_heavy | `reviewer_heavy.toml` | v1.0.1 | `reviewer_heavy/v1.0.1` |
+| global-agents | `AGENTS.md` | v3.5.0 | `global-agents/v3.5.0` |
+| cleanup | `cleanup.toml` | v3.3.0 | `cleanup/v3.3.0` |
+| explorer_light | `explorer_light.toml` | v1.1.0 | `explorer_light/v1.1.0` |
+| explorer_standard | `explorer_standard.toml` | v1.1.0 | `explorer_standard/v1.1.0` |
+| explorer_deep | `explorer_deep.toml` | v1.1.0 | `explorer_deep/v1.1.0` |
+| reviewer_mid | `reviewer_mid.toml` | v1.1.0 | `reviewer_mid/v1.1.0` |
+| reviewer_heavy | `reviewer_heavy.toml` | v2.0.0 | `reviewer_heavy/v2.0.0` |
 | worker | `worker.toml` | v3.1.4 | `worker/v3.1.4` |
 | worker_mini | `worker_mini.toml` | v3.1.4 | `worker_mini/v3.1.4` |
 
